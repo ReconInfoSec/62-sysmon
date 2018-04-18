@@ -72,6 +72,27 @@
 
 		<!--DATA: UtcTime, ProcessGuid, ProcessID, Image, FileVersion, Description, Product, Company, CommandLine, CurrentDirectory, User, LogonGuid, LogonId, TerminalSessionId, IntegrityLevel, Hashes, ParentProcessGuid, ParentProcessId, ParentImage, ParentCommandLine-->
 		<ProcessCreate onmatch="exclude">
+			<!--SECTION: Recon-->
+			<CommandLine condition="begin with">C:\Program Files (x86)\Sophos</CommandLine>
+			<Image condition="begin with">C:\Program Files (x86)\Sophos</Image>
+			<Image condition="begin with">C:\ProgramData\Sophos</Image>
+			<Image condition="begin with">C:\ProgramData\sysmon</Image>
+			<Image condition="begin with">C:\Program Files (x86)\HitmanPro</Image>
+			<Image condition="begin with">C:\Windows\WinSxS\</Image>
+			<Image condition="begin with">C:\Windows\SysWOW64\wbem\WmiPrvSE.exe</Image>
+			<Image condition="is">C:\Windows\servicing\TrustedInstaller.exe</Image>
+			
+			<!--SECTION: LabTech is garbage-->
+			<ParentImage condition="is">C:\Windows\LTSvc\LTSVC.exe</ParentImage>
+			<Image condition="is">C:\Windows\System32\find.exe</Image>
+			<Image condition="is">C:\Windows\System32\tasklist.exe</Image>
+			<Image condition="is">C:\Windows\System32\NETSTAT.EXE</Image>
+			
+			<!-- SECTION: 62-->
+			<Image condition="end with">wkhtmltopdf.exe</Image>
+			<CommandLine condition="contains">C:\Program Files (x86)\Site24x7</CommandLine>
+			<ParentImage condition="begin with">C:\Program Files (x86)\Site24x7</ParentImage>
+			<Image condition="begin with">C:\Program Files (x86)\ScreenConnect Client</Image>
 			<!--SECTION: Microsoft Windows-->
 			<CommandLine condition="begin with">C:\Windows\system32\DllHost.exe /Processid</CommandLine> <!--Microsoft:Windows-->
 			<CommandLine condition="is">C:\Windows\system32\SearchIndexer.exe /Embedding</CommandLine> <!--Microsoft:Windows: Search Indexer-->
